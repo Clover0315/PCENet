@@ -39,16 +39,16 @@ def visual_datalist(batch, ex, ratio=True, scatter=False):
     ax.axis('off')
     ax.imshow(inp)
 
-    colors = np.array([
-        # [0, 0, 255],
-        # [0, 206, 209],
-        # [255, 255, 0],
-        # [178, 34, 34],
+    colors = np.array([  # 设置颜色
+        [0, 0, 255],
+        [0, 206, 209],
+        [255, 255, 0],
+        [178, 34, 34],
         [255, 0, 0],
-        # [255, 20, 147],
-        # [0, 238, 238],
-        # [0, 255, 127],
-        # [0, 255, 0]
+        [255, 20, 147],
+        [0, 238, 238],
+        [0, 255, 127],
+        [0, 255, 0]
     ]) / 255.
     colors = cycle(colors)
 
@@ -59,7 +59,7 @@ def visual_datalist(batch, ex, ratio=True, scatter=False):
         color = next(colors).tolist()
         poly = np.append(poly, [poly[0]], axis=0)
         ax.plot(poly[:, 0], poly[:, 1], linewidth=1, color=color, zorder=1)
-        # ax.fill(poly[:, 0], poly[:, 1], alpha=0.3, color=color, zorder=0)
+        ax.fill(poly[:, 0], poly[:, 1], alpha=0.3, color=color, zorder=0)
         if scatter:
             ax.scatter(poly[:, 0], poly[:, 1], color=color, s=10, zorder=2, edgecolor='w')
 
@@ -114,19 +114,19 @@ def visual_single_data(batch, ex):
     ex = ex.detach().cpu().numpy() if isinstance(ex, torch.Tensor) else ex
     ex = ex * snake_config.down_ratio * scale
     colors = np.array([
-        # [0, 0, 255],
-        # [0, 206, 209],
-        # [255, 255, 0],
-        # [178, 34, 34],
+        [0, 0, 255],
+        [0, 206, 209],
+        [255, 255, 0],
+        [178, 34, 34],
         [255, 0, 0],
-        # [255, 20, 147],
-        # [0, 238, 238],
-        # [0, 255, 127],
-        # [0, 255, 0]
+        [255, 20, 147],
+        [0, 238, 238],
+        [0, 255, 127],
+        [0, 255, 0]
     ]) / 255.
     colors = cycle(colors)
 
-    for poly in [ex[7],ex[9],ex[12],ex[15]]:
+    for poly in [ex[7], ex[9], ex[12], ex[15]]:
         fig, ax = plt.subplots(1, figsize=[10, 10])
         fig.tight_layout()
         ax.axis('off')
@@ -171,7 +171,7 @@ def val(network, data_loader, visual_map):
             pys_valid.append(py_valid)
 
         '''curve'''
-        # visual_curve(batch, output['i_it_4py'])
+        visual_curve(batch, output['i_it_4py'])  # 椭圆形初始化方法
         for name in visual_map:
             if 'ex' == name:
                 visual_datalist(batch, output['ex'])
@@ -188,45 +188,28 @@ def val(network, data_loader, visual_map):
                 visual_datalist(batch, output['i_it_py'])
             if 'box' == name:
                 visual_datalist(batch, output['i_it_4py'])
-
             if 'valid_py' == name:
                 visual_datalist(batch, [[_ * snake_config.down_ratio for _ in output['valid_py']]], True, True)
 
 
 def main():
-    cfg.task = 'snake'
-    # cfg.task = 'ep_tp'
     cfg.test_km = True  # 测试km分配
 
     img_ids = [
-        # 134,
-        # 800000105040,  # *
-        # 800000302935,  # *
-        # 800000200495,
+        800000105040,  # *
+        800000302935,  # *
+        800000200495,
         800000103958,  # *
-        # 800000201398, 800000200660,
-        # 15120000002676, 15120000002708, 15120000003735,
-        # 158973, 28142, 34888
+        800000201398, 800000200660,
+        15120000002676, 15120000002708, 15120000003735,
     ]
 
     network1 = make_network(cfg).cuda()
     # 加载模型
-    # load_network(network1, 'data/model/34/1/snake_ep_tp/whu/')
-    load_network(network1, 'data/model/2/snake/whu')
-    # load_network(network1, 'data/model/4/snake3/whu')
-    # load_network(network1, 'data/model/22/snake_ep_tp/whu')
+    load_network(network1, 'data/model/34/1/ep_tp/whu/')
     # 加载数据集
-    # val_loader1 = make_data_loader(cfg, is_train=False)
     val_loader1 = make_data_loader(cfg, is_train=False, img_ids=img_ids)
-    val(network1, val_loader1, ['valid'])
-    #
-    # cfg.task = 'snake'
-    # network2 = make_network(cfg).cuda()
-    # # 加载模型
-    # load_network(network2, 'data/model/2/snake/whu')
-    # # 加载数据集
-    # val_loader2 = make_data_loader(cfg, is_train=False, img_ids=img_ids)
-    # val(network2, val_loader2, ['py', 'valid', 'gt'])
+    val(network1, val_loader1, ['py', 'valid', 'gt'])
 
 
 if __name__ == "__main__":
