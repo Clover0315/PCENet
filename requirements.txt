@@ -1,0 +1,26 @@
+--extra-index-url https://pypi.ngc.nvidia.com
+Cython
+nvidia-cuda-runtime-cu11
+nvidia-cuda-cupti-cu11
+nvidia-cuda-nvcc-cu11
+nvidia-nvml-dev-cu11
+nvidia-cuda-nvrtc-cu11
+nvidia-nvtx-cu11
+nvidia-cuda-sanitizer-api-cu11
+nvidia-cublas-cu11
+nvidia-cufft-cu11
+nvidia-curand-cu11
+nvidia-cusolver-cu11
+nvidia-cusparse-cu11
+nvidia-npp-cu11
+nvidia-nvjpeg-cu11
+
+yacs==0.1.4
+numpy==1.23.5
+tqdm==4.28.1
+opencv-contrib-python==3.4.2.17
+opencv-python==3.4.2.17
+imgaug==0.2.9
+pycocotools==2.0.0
+Pillow
+tensorboardX==1.2

@@ -1,0 +1,4 @@
+# ninja log v5
+0	7509	1694759832670525177	/home/ai-center/clover/project/building-extraction/snake-master/lib/csrc/extreme_utils/build/temp.linux-x86_64-cpython-38/home/ai-center/clover/project/building-extraction/snake-master/lib/csrc/extreme_utils/src/nms.o	26a8c91c9d3415fb
+1	7903	1694759833064525159	/home/ai-center/clover/project/building-extraction/snake-master/lib/csrc/extreme_utils/build/temp.linux-x86_64-cpython-38/home/ai-center/clover/project/building-extraction/snake-master/lib/csrc/extreme_utils/src/utils.o	3f7c9702df9cf6a5
+1	15210	1694759840369524814	/home/ai-center/clover/project/building-extraction/snake-master/lib/csrc/extreme_utils/build/temp.linux-x86_64-cpython-38/home/ai-center/clover/project/building-extraction/snake-master/lib/csrc/extreme_utils/utils.o	f4f161beb06c054
